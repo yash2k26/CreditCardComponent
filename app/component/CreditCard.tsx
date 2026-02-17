@@ -34,7 +34,7 @@ export default function CreditCard(): JSX.Element {
             onClick={() => setfront(!front)}
             className={` ${front ? 'z-50' : ''} rounded-xl sm:rounded-2xl relative -translate-y-8 sm:-translate-y-32 lg:-translate-y-52 h-44 sm:h-52 md:h-56 w-[95%] max-w-[340px] sm:max-w-[380px] md:max-w-[420px] shadow-[0_20px_50px_rgba(0,0,0,0.3),0_10px_20px_rgba(0,0,0,0.2)] flex flex-col `}>
             <img draggable="false" className='absolute  inset-0 h-full w-full object-cover rounded-xl sm:rounded-2xl' src="/3.jpeg" alt="" />
-            <div className='bg-black/15 z-10 absolute rounded-xl sm:rounded-2xl h-full w-full inset-0 ' />
+            <div className='bg-black/10 z-10 absolute rounded-xl sm:rounded-2xl h-full w-full inset-0 ' />
             <div className='absolute z-10 inset-0 flex flex-col justify-between p-4 sm:p-5 md:p-6'>
                 <div className='flex justify-between items-center'>
                     <img draggable="false" src="chip.png" className='h-8 sm:h-10 md:h-12' alt="" />
