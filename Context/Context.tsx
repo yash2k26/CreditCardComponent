@@ -45,7 +45,7 @@ export const CardProvider = ({ children }: { children: ReactNode }) => {
     }
 
     const handleCardHolder = (e: ChangeEvent<HTMLInputElement>) => {
-        setCardHolder(e.target.value.toUpperCase())
+        setCardHolder(e.target.value)
     }
 
     const handleMonth = (e: ChangeEvent<HTMLInputElement>) => {
