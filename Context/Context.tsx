@@ -40,8 +40,18 @@ export const CardProvider = ({ children }: { children: ReactNode }) => {
     const [year, setYear] = useState('')
 
     const handleCardNumber = (e: ChangeEvent<HTMLInputElement>) => {
-        const rawValue = e.target.value.replace(/\D/g, '').slice(0, 16)
-        setCardNumber(rawValue)
+        let rawValue = e.target.value.replace(/\D/g, '').slice(0, 16)
+
+
+        let formattedValue = ''
+        for (let i = 0; i < rawValue.length; i++) {
+            if (i > 0 && i % 4 === 0) {
+                formattedValue += ' - '
+            }
+            formattedValue += rawValue[i]
+        }
+
+        setCardNumber(formattedValue)
     }
 
     const handleCardHolder = (e: ChangeEvent<HTMLInputElement>) => {
@@ -57,20 +67,23 @@ export const CardProvider = ({ children }: { children: ReactNode }) => {
     }
 
     const masked = (value: string) => {
+
+        const rawValue = value.replace(/\D/g, '')
         const Total = 16
 
         let result = ""
 
         for (let i = 0; i < Total; i++) {
-            if (i < value.length) {
+            if (i < rawValue.length) {
                 if (i < 4 || i >= 12) {
-                    result += value[i]
+                    result += rawValue[i]
                 } else {
                     result += "*"
                 }
             } else {
                 result += "#"
             }
+
             if ((i + 1) % 4 === 0 && i !== Total - 1) {
                 result += " "
             }

@@ -8,7 +8,7 @@ const Form = () => {
     const years = [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035]
 
     const {
-        CardNumber, CardHolder, setCardHolder, setCardNumber, setMonth, setYear, year, month
+        CardNumber, CardHolder, setCardHolder, setCardNumber, setMonth, setYear, year, month, handleCardNumber
     } = useCard()
 
     const [isMonthOpen, setIsMonthOpen] = useState(false)
@@ -42,19 +42,23 @@ const Form = () => {
         setcvv('')
     }
 
+
     return (
-        <div className='bg-white rounded-xl w-2xl p-10 pt-28 mt-24 '>
+        <div className='bg-white rounded-xl w-2xl shadow-[0_5px_10px_rgba(0,0,0,0.3)] p-10 pt-28 translate-y-14  '>
             <div className='flex flex-col gap-5  '>
                 <div className='flex flex-col gap-2'>
-                    <label htmlFor="" className='text-black font-mono text-sm'>Card Number</label>
+                    <label htmlFor="" className='text-black font-sans text-sm'>Card Number</label>
                     <input
                         value={CardNumber}
-                        onChange={(e) => setCardNumber(e.target.value)}
-                        className='p-3 border text-black border-neutral-400 rounded-md focus:border-neutral-600 outline-none transition-colors'
-                        type="number" />
+                        onChange={handleCardNumber}
+                        className='p-3  border text-black border-neutral-400 rounded-md focus:border-neutral-600 outline-none transition-colors'
+                        type="text"
+                        placeholder="1234 - 5678 - 1234 - 5678"
+                        maxLength={25}
+                    />
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <label htmlFor="" className='text-black font-mono text-sm'>Card Holder</label>
+                    <label htmlFor="" className='text-black font-sans text-sm'>Card Holder</label>
                     <input
                         value={CardHolder}
                         onChange={(e) => setCardHolder(e.target.value)}
@@ -63,7 +67,7 @@ const Form = () => {
                 </div>
                 <div className='flex items-start gap-5'>
                     <div className='flex flex-col gap-2 flex-1'>
-                        <label htmlFor="" className='text-black font-mono text-sm'>Expiry Date</label>
+                        <label htmlFor="" className='text-black font-sans text-sm'>Expiry Date</label>
                         <div className='flex gap-3'>
                             <div ref={monthRef} className='relative flex-1'>
                                 <div
@@ -112,7 +116,7 @@ const Form = () => {
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0, y: 10 }}
                                             transition={{ duration: 0.2 }}
-                                            className='absolute z-50 w-full bottom-full mb-1 bg-white border border-neutral-400 rounded-xl shadow-xl max-h-60 overflow-y-auto'
+                                            className='absolute z-50 w-full  mb-1 bg-white border border-neutral-400 rounded-xl shadow-xl max-h-60 overflow-y-auto'
                                         >
                                             {years.map((y) => (
                                                 <div
@@ -134,7 +138,7 @@ const Form = () => {
                     </div>
 
                     <div className='flex flex-col gap-2'>
-                        <label htmlFor="cvv" className='text-black font-mono text-sm'>CVV</label>
+                        <label htmlFor="cvv" className='text-black font-sans text-sm'>CVV</label>
                         <input
                             value={cvv}
                             onChange={(e) => setcvv(e.target.value)}
@@ -148,8 +152,8 @@ const Form = () => {
                 <div className=' flex justify-evenly mt-4 items-center gap-3 '>
                     <button
                         onClick={handleClear}
-                        className='flex-1 px-4 py-2 rounded-md text-black hover:bg-neutral-50 border-neutral-500 border '>Clear</button>
-                    <button className='flex-1 px-4 py-2 text-white rounded-md hover:bg-blue-600 bg-blue-500 border-neutral-500/55 border'>Proceed</button>
+                        className='flex-1 px-8 py-4  rounded-md text-black hover:bg-neutral-50 border-neutral-500 border '>Clear</button>
+                    <button className='flex-1 px-8 py-4 text-white rounded-md hover:bg-blue-600 bg-blue-500 border-neutral-500/55 border'>Proceed</button>
                 </div>
             </div>
         </div>

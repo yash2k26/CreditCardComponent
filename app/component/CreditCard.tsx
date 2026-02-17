@@ -32,9 +32,9 @@ export default function CreditCard(): JSX.Element {
 
             }}
             onClick={() => setfront(!front)}
-            className={` ${front ? 'z-50' : ''} rounded-xl sm:rounded-2xl relative -translate-y-8 sm:-translate-y-32 lg:-translate-y-52 h-44 sm:h-52 md:h-56 w-[95%] max-w-[340px] sm:max-w-[380px] md:max-w-[420px] shadow-xl sm:shadow-2xl shadow-black flex flex-col `}>
+            className={` ${front ? 'z-50' : ''} rounded-xl sm:rounded-2xl relative -translate-y-8 sm:-translate-y-32 lg:-translate-y-52 h-44 sm:h-52 md:h-56 w-[95%] max-w-[340px] sm:max-w-[380px] md:max-w-[420px] shadow-[0_20px_50px_rgba(0,0,0,0.3),0_10px_20px_rgba(0,0,0,0.2)] flex flex-col `}>
             <img draggable="false" className='absolute  inset-0 h-full w-full object-cover rounded-xl sm:rounded-2xl' src="/3.jpeg" alt="" />
-            <div className='bg-black/10 z-10 absolute rounded-xl sm:rounded-2xl h-full w-full inset-0 ' />
+            <div className='bg-black/15 z-10 absolute rounded-xl sm:rounded-2xl h-full w-full inset-0 ' />
             <div className='absolute z-10 inset-0 flex flex-col justify-between p-4 sm:p-5 md:p-6'>
                 <div className='flex justify-between items-center'>
                     <img draggable="false" src="chip.png" className='h-8 sm:h-10 md:h-12' alt="" />
@@ -74,11 +74,32 @@ export default function CreditCard(): JSX.Element {
                                 text-white
                                 flex flex-col
                             ">
-                        <span className="text-[12px] text-neutral-100 tracking-normal mb-1">Card Holder</span>
-                        {CardHolder.toUpperCase() || "FULL NAME"}
+                        <span className="text-[12px] text-white tracking-normal mb-1">Card Holder</span>
+                        {(() => {
+                            const name = CardHolder.toUpperCase().trim() || "FULL NAME"
+                            if (name.length <= 20) return name
+
+
+                            const parts = name.split(' ').filter(part => part.length > 0)
+
+
+                            if (parts.length === 1) return name.slice(0, 20)
+
+                            let abbreviatedName = name
+
+
+                            for (let i = 0; i < parts.length - 1; i++) {
+                                if (abbreviatedName.length <= 20) break
+                                parts[i] = parts[i][0] + "."
+                                abbreviatedName = parts.join(' ')
+                            }
+
+
+                            return abbreviatedName.length > 20 ? abbreviatedName.slice(0, 20) : abbreviatedName
+                        })()}
                     </div>
                     <div className="flex flex-col  items-end">
-                        <span className="text-[12px] text-neutral-100 tracking-normal mb-1">Expires</span>
+                        <span className="text-[12px] text-white tracking-normal mb-1">Expires</span>
                         <div className="flex">
                             <div
                                 style={{ fontSize: "18px" }}
