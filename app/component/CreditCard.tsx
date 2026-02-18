@@ -12,11 +12,13 @@ export default function CreditCard(): JSX.Element {
     return (
         <motion.div
             onClick={() => setIsFront(!isFront)}
-            whileTap={{
-                y: [0, -60, 0],
-                transition: { duration: 0.5, ease: "easeInOut" }
+            initial={{
+                y:0
             }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
+            whileTap={{
+                y: [0,-80, 0],
+            }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
             className={`
         cursor-pointer rounded-2xl relative
         shadow-[0_20px_50px_rgba(0,0,0,0.3),0_10px_20px_rgba(0,0,0,0.2)]
