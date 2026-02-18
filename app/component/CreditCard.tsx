@@ -16,7 +16,7 @@ export default function CreditCard(): JSX.Element {
                 y:0
             }}
             whileTap={{
-                y: [0,-80, 0],
+                y: [0,-100, 0],
             }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className={`
