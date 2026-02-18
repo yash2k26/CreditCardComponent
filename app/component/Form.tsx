@@ -42,6 +42,7 @@ const Form = () => {
 
   return (
     <div className="
+      relative z-20
       bg-white rounded-2xl border border-neutral-200
       shadow-[0_4px_32px_rgba(0,0,0,0.08)]
       w-full

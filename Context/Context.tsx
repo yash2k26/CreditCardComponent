@@ -18,6 +18,8 @@ type CardContextType = {
     setCardHolder: (value: string) => void
 
     maskedNumber: string | undefined
+    isFront: boolean
+    setIsFront: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const CardContext = createContext<CardContextType | null>(null)
@@ -38,6 +40,7 @@ export const CardProvider = ({ children }: { children: ReactNode }) => {
     const [CardHolder, setCardHolder] = useState('')
     const [month, setMonth] = useState('')
     const [year, setYear] = useState('')
+    const [isFront, setIsFront] = useState(false)
 
     const handleCardNumber = (e: ChangeEvent<HTMLInputElement>) => {
         let rawValue = e.target.value.replace(/\D/g, '').slice(0, 16)
@@ -112,7 +115,9 @@ export const CardProvider = ({ children }: { children: ReactNode }) => {
                 setMonth,
                 setYear,
 
-                maskedNumber
+                maskedNumber,
+                isFront,
+                setIsFront
             }}
         >
             {children}
